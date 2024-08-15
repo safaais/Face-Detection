@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Detection!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f2f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        #video-container {
+            border: 2px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        #options {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select {
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            #video-container {
+                max-width: 90%;
+            }
+
+            #options {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection!</h1>
+
+    <div id="options">
+        <label for="color-select">Rectangle Color:</label>
+        <select id="color-select" onchange="updateColor(this.value)">
+            <option value="green">Green</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+        </select>
+
+        <label for="scale-factor">Scale Factor:</label>
+        <select id="scale-factor" onchange="updateScaleFactor(this.value)">
+            <option value="1.1">1.1</option>
+            <option value="1.2">1.2</option>
+            <option value="1.3">1.3</option>
+        </select>
+
+        <label for="min-neighbors">Min Neighbors:</label>
+        <select id="min-neighbors" onchange="updateMinNeighbors(this.value)">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+    <div id="video-container">
+        <img src="{{ url_for('video_feed') }}" id="video-feed" width="640" height="480">
+    </div>
+
+    <script>
+        function updateColor(value) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('color', value);
+            window.location.href = url;
+        }
+
+        function updateScaleFactor(value) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('scale_factor', value);
+            window.location.href = url;
+        }
+
+        function updateMinNeighbors(value) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('min_neighbors', value);
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>
