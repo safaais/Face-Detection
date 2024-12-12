@@ -4,8 +4,11 @@ These steps guide you through creating a Flask web application that performs rea
 ## Set Up the Environment
 ### Install Dependencies: Ensure you have Python and the necessary libraries installed:
 •	Flask: Web framework for Python.
+
 •	OpenCV: Library for computer vision tasks.
+
 •	NumPy: Library for numerical operations.
+
 ```
 pip install Flask opencv-python numpy
 ```
